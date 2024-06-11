@@ -4,6 +4,7 @@ import { Colors } from "constants/colors";
 import { Image } from "react-native";
 import FavoriteScreen from "screens/FavoriteScreen";
 import HomeScreen from "screens/HomeScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,9 +15,12 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
-          tabBarStyle: { backgroundColor: Colors.black },
+          tabBarStyle: {
+            backgroundColor: Colors.black,
+            borderTopWidth: 0,
+          },
           tabBarShowLabel: false,
-          tabBarActiveTintColor: Colors.secondary, 
+          tabBarActiveTintColor: Colors.secondary,
           tabBarInactiveTintColor: Colors.primary,
         }}
       >
@@ -26,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require("../assets/images/navigation/home.png")}
+                source={require("../../assets/images/navigation/home.png")}
                 style={{ width: size, height: size, tintColor: color }}
               />
             ),
@@ -38,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require("../assets/images/navigation/heart.png")}
+                source={require("../../assets/images/navigation/heart.png")}
                 style={{ width: size, height: size, tintColor: color }}
               />
             ),
