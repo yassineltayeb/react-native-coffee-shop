@@ -2,12 +2,21 @@ import SearchInput from "components/SearchInput";
 import Header from "components/common/Header";
 import Title from "components/labels/Title";
 import { Colors } from "constants/colors";
+import { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
 import { COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 
 interface HomeScreenProps {}
 const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
+const coffees = useSelector((state:RootState)=> state.coffee);
+const beans = useSelector((state:RootState)=> state.bean);
+
+useEffect(()=> {
+},[]);
+
   return (
     <SafeAreaView style={style.safeAreaContainer}>
       <ScrollView style={style.container}>
