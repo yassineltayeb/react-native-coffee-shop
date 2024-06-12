@@ -48,6 +48,7 @@ const Categories: React.FC<CategoriesProps> = ({
 const styles = StyleSheet.create({
   itemContainer: {
     paddingHorizontal: 10,
+    paddingVertical: 5,
     backgroundColor: COLORS.primaryBlackHex,
     borderRadius: 5,
   },

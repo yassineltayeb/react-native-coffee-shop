@@ -1,6 +1,7 @@
 import SearchInput from "components/SearchInput";
 import Header from "components/common/Header";
 import Categories from "components/home/Categories";
+import CardsList from "components/home/CardsList";
 import Title from "components/labels/Title";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -16,6 +17,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [filteredCoffees, setFilteredCoffees] = useState<any[]>(coffees);
+  const [filteredBeans, setFilteredBeans] = useState<any[]>(beans);
 
   useEffect(() => {
     getCategories();
@@ -36,9 +38,19 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
     setFilteredCoffees(filteredCoffees);
   };
 
+  const getFilteredBeans = (category: string) => {
+    if (category == "All") {
+      setFilteredBeans(beans);
+      return;
+    }
+    const filteredBeans = coffees.filter((bean) => bean.name == category);
+    setFilteredBeans(filteredBeans);
+  };
+
   const handelActiveCategory = (category: string) => {
     setActiveCategory(category);
     getFilteredCoffees(category);
+    getFilteredBeans(category);
   };
 
   return (
@@ -69,6 +81,15 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
           activeCategory={activeCategory}
           onCategoryChange={handelActiveCategory}
         />
+        <CardsList items={filteredCoffees} />
+        <Title
+          title="Coffee beans"
+          fontFamily={FONTFAMILY.poppins_semibold}
+          fontSize={FONTSIZE.size_16}
+          color={COLORS.primaryWhiteHex}
+          style={{ marginVertical: 20 }}
+        />
+        <CardsList items={filteredBeans} />
       </ScrollView>
     </SafeAreaView>
   );

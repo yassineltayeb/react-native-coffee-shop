@@ -18,7 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
             // backgroundColor: COLORS.primaryBlackHex,
             backgroundColor: `rgba(${COLORS.primaryBlackHex}, 0.5)`,
             borderTopWidth: 0,
-            position:"absolute"
+            // position:"absolute"
           },
           tabBarShowLabel: false,
           tabBarActiveTintColor: COLORS.primaryRedHex,
