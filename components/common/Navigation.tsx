@@ -1,10 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { Colors } from "constants/colors";
 import { Image } from "react-native";
 import FavoriteScreen from "screens/FavoriteScreen";
 import HomeScreen from "screens/HomeScreen";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "theme/these";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,12 +15,14 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            backgroundColor: Colors.black,
+            // backgroundColor: COLORS.primaryBlackHex,
+            backgroundColor: `rgba(${COLORS.primaryBlackHex}, 0.5)`,
             borderTopWidth: 0,
+            position:"absolute"
           },
           tabBarShowLabel: false,
-          tabBarActiveTintColor: Colors.secondary,
-          tabBarInactiveTintColor: Colors.primary,
+          tabBarActiveTintColor: COLORS.primaryRedHex,
+          tabBarInactiveTintColor: COLORS.primaryOrangeHex,
         }}
       >
         <Tab.Screen

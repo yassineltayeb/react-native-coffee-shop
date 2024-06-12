@@ -1,9 +1,9 @@
 import SearchInput from "components/SearchInput";
 import Header from "components/common/Header";
+import Categories from "components/home/Categories";
 import Title from "components/labels/Title";
-import { Colors } from "constants/colors";
-import { useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { RootState } from "store/store";
@@ -11,11 +11,35 @@ import { COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 
 interface HomeScreenProps {}
 const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
-const coffees = useSelector((state:RootState)=> state.coffee);
-const beans = useSelector((state:RootState)=> state.bean);
+  const coffees = useSelector((state: RootState) => state.coffee);
+  const beans = useSelector((state: RootState) => state.bean);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [filteredCoffees, setFilteredCoffees] = useState<any[]>(coffees);
 
-useEffect(()=> {
-},[]);
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = () => {
+    const categories = [...new Set(coffees.map((coffee) => coffee.name))];
+    categories.unshift("All");
+    setCategories(categories);
+  };
+
+  const getFilteredCoffees = (category: string) => {
+    if (category == "All") {
+      setFilteredCoffees(coffees);
+      return;
+    }
+    const filteredCoffees = coffees.filter((coffee) => coffee.name == category);
+    setFilteredCoffees(filteredCoffees);
+  };
+
+  const handelActiveCategory = (category: string) => {
+    setActiveCategory(category);
+    getFilteredCoffees(category);
+  };
 
   return (
     <SafeAreaView style={style.safeAreaContainer}>
@@ -39,6 +63,12 @@ useEffect(()=> {
         <View style={style.searchInputContainer}>
           <SearchInput />
         </View>
+        <Categories
+          categories={categories}
+          style={style.categoriesStyle}
+          activeCategory={activeCategory}
+          onCategoryChange={handelActiveCategory}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -47,7 +77,7 @@ useEffect(()=> {
 const style = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.black,
+    backgroundColor: COLORS.primaryBlackHex,
     justifyContent: "center",
   },
   container: {
@@ -62,7 +92,10 @@ const style = StyleSheet.create({
   },
   searchInputContainer: {
     flex: 1,
-    marginTop:32
+    marginTop: 32,
+  },
+  categoriesStyle: {
+    marginVertical: 28,
   },
 });
 
