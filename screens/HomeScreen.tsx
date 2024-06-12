@@ -1,7 +1,8 @@
+import SearchInput from "components/SearchInput";
 import Header from "components/common/Header";
 import Title from "components/labels/Title";
 import { Colors } from "constants/colors";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 
@@ -9,7 +10,7 @@ interface HomeScreenProps {}
 const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
   return (
     <SafeAreaView style={style.safeAreaContainer}>
-      <View style={style.container}>
+      <ScrollView style={style.container}>
         <Header />
         <View style={style.titleContainer}>
           <Title
@@ -26,7 +27,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
             color={COLORS.primaryWhiteHex}
           />
         </View>
-      </View>
+        <View style={style.searchInputContainer}>
+          <SearchInput />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -35,6 +39,7 @@ const style = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
     backgroundColor: Colors.black,
+    justifyContent: "center",
   },
   container: {
     flex: 1,
@@ -45,6 +50,10 @@ const style = StyleSheet.create({
   },
   title: {
     marginTop: 31,
+  },
+  searchInputContainer: {
+    flex: 1,
+    marginTop:32
   },
 });
 
