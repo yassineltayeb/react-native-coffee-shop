@@ -1,4 +1,4 @@
-import Navigation from "components/common/Navigation";
+import Navigation from "components/common/TabNavigation";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
