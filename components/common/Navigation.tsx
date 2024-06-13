@@ -15,8 +15,8 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            // backgroundColor: COLORS.primaryBlackHex,
-            backgroundColor: `rgba(${COLORS.primaryBlackHex}, 0.5)`,
+            backgroundColor: COLORS.primaryBlackHex,
+            // backgroundColor: `rgba(${COLORS.primaryBlackHex}, 0.5)`,
             borderTopWidth: 0,
             // position:"absolute"
           },
