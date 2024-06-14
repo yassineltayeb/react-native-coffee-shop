@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/store";
 import { toggleFavorite } from "store/favorite-slice";
 import DetailsImageBackground from "components/common/DetailsImageBackground";
+import DetailsDescription from "components/common/DetailsDescription";
 
 type DetailsScreenRouteParams = {
   route: {
@@ -58,6 +59,10 @@ const DetailsScreen = () => {
           backButtonHandler={backButtonHandler}
           toggleIsFavorite={toggleIsFavorite}
         />
+        <DetailsDescription
+          description={item.description}
+          style={styles.description}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -72,5 +77,9 @@ const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flex: 1,
+  },
+  description: {
+    marginTop: 19,
+    marginHorizontal: 18.5,
   },
 });
