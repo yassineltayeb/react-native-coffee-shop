@@ -49,11 +49,8 @@ const DetailsScreen = () => {
           imagelink_portrait={item.imagelink_portrait}
           type={item.type}
           name={item.name}
-          ingredients={
-            item.type === "Bean"
-              ? `From ${item.ingredients}`
-              : item.special_ingredient
-          }
+          ingredients={item.ingredients}
+          special_ingredient={item.special_ingredient}
           average_rating={item.average_rating}
           ratings_count={item.ratings_count}
           roasted={item.roasted}

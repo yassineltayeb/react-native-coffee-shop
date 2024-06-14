@@ -16,6 +16,7 @@ interface DetailsImageBackgroundProps {
   type: string;
   name: string;
   ingredients: string;
+  special_ingredient: string;
   average_rating: string;
   ratings_count: string;
   roasted: string;
@@ -29,6 +30,7 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
   type,
   name,
   ingredients,
+  special_ingredient,
   average_rating,
   ratings_count,
   roasted,
@@ -60,7 +62,9 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
               fontSize={FONTSIZE.size_20}
             />
             <Title
-              title={ingredients}
+              title={
+                type === "Bean" ? `From ${ingredients}` : special_ingredient
+              }
               color={COLORS.primaryWhiteHex}
               fontFamily={FONTFAMILY.poppins_medium}
               fontSize={FONTSIZE.size_12}
@@ -78,7 +82,8 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
                 color={COLORS.secondaryLightGreyHex}
                 fontSize={FONTSIZE.size_10}
                 fontFamily={FONTFAMILY.poppins_regular}
-              />
+                style={styles.typeLabel}
+                />
             </View>
             <View style={styles.type}>
               <CustomIcon
@@ -87,11 +92,12 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
                 color={COLORS.primaryOrangeHex}
               />
               <Title
-                title={type}
+                title={ingredients}
                 color={COLORS.secondaryLightGreyHex}
                 fontSize={FONTSIZE.size_10}
                 fontFamily={FONTFAMILY.poppins_regular}
-              />
+                style={styles.typeLabel}
+                />
             </View>
           </View>
         </View>
@@ -170,6 +176,9 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_10,
     marginLeft: 20,
   },
+  typeLabel: {
+    marginTop: 2,
+  },
   secondRowContainer: {
     flex: 1,
     flexDirection: "row",
@@ -182,7 +191,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   ratingLabel: {
-    marginTop:3,
+    marginTop: 3,
     marginLeft: 5,
   },
   roastContainer: {
