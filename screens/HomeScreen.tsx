@@ -54,16 +54,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
   };
 
   return (
-    <SafeAreaView style={style.safeAreaContainer}>
-      <ScrollView style={style.container}>
+    <SafeAreaView style={styles.safeAreaContainer}>
+      <ScrollView style={styles.container}>
         <Header />
-        <View style={style.titleContainer}>
+        <View style={styles.titleContainer}>
           <Title
             title="Find the best"
             fontFamily={FONTFAMILY.poppins_semibold}
             fontSize={30}
             color={COLORS.primaryWhiteHex}
-            style={style.title}
+            style={styles.title}
           />
           <Title
             title="coffee for you"
@@ -72,12 +72,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
             color={COLORS.primaryWhiteHex}
           />
         </View>
-        <View style={style.searchInputContainer}>
+        <View style={styles.searchInputContainer}>
           <SearchInput />
         </View>
         <Categories
           categories={categories}
-          style={style.categoriesStyle}
+          style={styles.categoriesStyle}
           activeCategory={activeCategory}
           onCategoryChange={handelActiveCategory}
         />
@@ -95,7 +95,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
     backgroundColor: COLORS.primaryBlackHex,

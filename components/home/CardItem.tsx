@@ -9,15 +9,22 @@ import React from "react";
 import { COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 interface CoffeesItemProps {
   coffee: any;
 }
 
 const CardItem: React.FC<CoffeesItemProps> = ({ coffee }) => {
+  const navigation = useNavigation();
+
+  const handleCardClick = () => {
+    navigation.navigate("DetailsScreen", { item: coffee });
+    
+  };
+
   return (
-    <Pressable>
+    <Pressable onPress={handleCardClick}>
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}

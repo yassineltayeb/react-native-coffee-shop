@@ -1,22 +1,34 @@
+import { useNavigation } from "@react-navigation/native";
 import ButtonIcon from "components/buttons/ButtonIcon";
 import { StyleSheet, View, Text } from "react-native";
+import { useDispatch } from "react-redux";
 import { COLORS, FONTFAMILY, FONTSIZE, SPACING } from "theme/these";
-import ProfilePic from "./ProfilePic";
 
-interface HeaderProps {
-  title?: string;
+interface DetailsScreenHeaderProps {
+  isFavorite?: boolean;
+  onPressLeft?: any;
+  onPressRight?: any;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const DetailsScreenHeader: React.FC<DetailsScreenHeaderProps> = ({
+  isFavorite,
+  onPressLeft,
+  onPressRight,
+}) => {
   return (
     <View style={styles.container}>
       <ButtonIcon
-        name="grid"
+        name="chevron-back"
         color={COLORS.primaryLightGreyHex}
         size={FONTSIZE.size_16}
+        onPress={onPressLeft}
       />
-      <Text style={styles.headerText}>{title}</Text>
-      <ProfilePic />
+      <ButtonIcon
+        name="heart"
+        color={isFavorite ? COLORS.primaryRedHex : COLORS.primaryLightGreyHex}
+        size={FONTSIZE.size_16}
+        onPress={onPressRight}
+      />
     </View>
   );
 };
@@ -35,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default DetailsScreenHeader;

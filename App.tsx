@@ -1,10 +1,11 @@
-import Navigation from "components/common/TabNavigation";
+import TabNavigation from "components/common/TabNavigation";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "store/store";
+import StackNavigation from "components/common/StackNavigation";
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -36,7 +37,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <StatusBar style="light" />
-      <Navigation />
+      <StackNavigation />
     </Provider>
   );
 }

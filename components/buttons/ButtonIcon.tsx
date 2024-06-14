@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,24 +8,28 @@ interface ButtonIconProps {
   name: any;
   color: string;
   size: number;
+  onPress?: any;
 }
 
-const ButtonIcon: React.FC<ButtonIconProps> = ({ name, color, size }) => {
+const ButtonIcon: React.FC<ButtonIconProps> = ({
+  name,
+  color,
+  size,
+  onPress,
+}) => {
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
-        style={styles.linearGradient}
-      >
-        <Ionicons
-          name={name}
-          size={size}
-          color={color}
-        />
-      </LinearGradient>
-    </View>
+    <Pressable onPress={onPress}>
+      <View style={styles.container}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
+          style={styles.linearGradient}
+        >
+          <Ionicons name={name} size={size} color={color} />
+        </LinearGradient>
+      </View>
+    </Pressable>
   );
 };
 
