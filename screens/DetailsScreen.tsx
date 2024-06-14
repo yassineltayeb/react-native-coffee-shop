@@ -8,6 +8,7 @@ import { RootState } from "store/store";
 import { toggleFavorite } from "store/favorite-slice";
 import DetailsImageBackground from "components/common/DetailsImageBackground";
 import DetailsDescription from "components/common/DetailsDescription";
+import DetailsSizes from "components/common/DetailsSizes";
 
 type DetailsScreenRouteParams = {
   route: {
@@ -23,6 +24,9 @@ const DetailsScreen = () => {
   const dispatch = useDispatch();
   const favorite = useSelector((state: RootState) => state.favorite);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(
+    route.params.item.prices[0].size
+  );
   const item = route.params.item;
 
   const backButtonHandler = () => {
@@ -37,6 +41,10 @@ const DetailsScreen = () => {
   const getIsFavorite = () => {
     const isFavorite = favorite.includes(route.params.item.id);
     setIsFavorite(isFavorite);
+  };
+
+  const handelSizeChange = (size: string) => {
+    setSelectedSize(size);
   };
 
   useEffect(() => {
@@ -63,6 +71,12 @@ const DetailsScreen = () => {
           description={item.description}
           style={styles.description}
         />
+        <DetailsSizes
+          prices={item.prices}
+          selectedSize={selectedSize}
+          style={styles.sizes}
+          onPress={handelSizeChange}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -80,6 +94,9 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 19,
+    marginHorizontal: 18.5,
+  },
+  sizes: {
     marginHorizontal: 18.5,
   },
 });

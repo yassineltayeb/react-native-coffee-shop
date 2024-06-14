@@ -17,6 +17,8 @@ const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
         title="Description"
         color={COLORS.secondaryLightGreyHex}
         style={styles.title}
+        fontFamily={FONTFAMILY.poppins_medium}
+        fontSize={FONTSIZE.size_16}
       />
       <Title
         title={description}
