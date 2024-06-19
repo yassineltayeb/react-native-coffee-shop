@@ -9,6 +9,7 @@ import { toggleFavorite } from "store/favorite-slice";
 import DetailsImageBackground from "components/common/DetailsImageBackground";
 import DetailsDescription from "components/common/DetailsDescription";
 import DetailsSizes from "components/common/DetailsSizes";
+import PriceFooter from "components/common/PriceFooter";
 
 type DetailsScreenRouteParams = {
   route: {
@@ -26,6 +27,9 @@ const DetailsScreen = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedSize, setSelectedSize] = useState(
     route.params.item.prices[0].size
+  );
+  const [selectedPrice, setSelectedPrice] = useState(
+    route.params.item.prices[0].price
   );
   const item = route.params.item;
 
@@ -45,6 +49,10 @@ const DetailsScreen = () => {
 
   const handelSizeChange = (size: string) => {
     setSelectedSize(size);
+    const selectedSizeFromPrizes = item.prices?.filter(
+      (price: any) => price.size === size
+    );
+    setSelectedPrice(selectedSizeFromPrizes[0].price);
   };
 
   useEffect(() => {
@@ -77,6 +85,12 @@ const DetailsScreen = () => {
           style={styles.sizes}
           onPress={handelSizeChange}
         />
+        <PriceFooter
+          priceTitle="Price"
+          price={selectedPrice}
+          priceButtonLabel="Add to Cart"
+          containerStyle={styles.priceContainer}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -97,6 +111,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 18.5,
   },
   sizes: {
+    marginHorizontal: 18.5,
+  },
+  priceContainer: {
+    marginTop: 28,
     marginHorizontal: 18.5,
   },
 });
