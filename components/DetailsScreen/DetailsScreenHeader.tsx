@@ -19,13 +19,13 @@ const DetailsScreenHeader: React.FC<DetailsScreenHeaderProps> = ({
     <View style={styles.container}>
       <ButtonIcon
         name="chevron-back"
-        color={COLORS.primaryLightGreyHex}
+        color={COLORS.secondaryLightGreyHex}
         size={FONTSIZE.size_16}
         onPress={onPressLeft}
       />
       <ButtonIcon
         name="heart"
-        color={isFavorite ? COLORS.primaryRedHex : COLORS.primaryLightGreyHex}
+        color={isFavorite ? COLORS.primaryRedHex : COLORS.secondaryLightGreyHex}
         size={FONTSIZE.size_16}
         onPress={onPressRight}
       />
