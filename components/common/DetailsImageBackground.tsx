@@ -23,6 +23,8 @@ interface DetailsImageBackgroundProps {
   isFavorite: any;
   backButtonHandler: any;
   toggleIsFavorite: any;
+  hideBackButton: boolean;
+  style?: any;
 }
 
 const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
@@ -37,11 +39,13 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
   isFavorite,
   backButtonHandler,
   toggleIsFavorite,
+  hideBackButton,
+  style,
 }) => {
   return (
     <ImageBackground
       source={imagelink_portrait}
-      style={styles.imageBackground}
+      style={[styles.imageBackground, style]}
       resizeMode="cover"
     >
       <View style={styles.imageBackgroundContent}>
@@ -49,6 +53,7 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
           isFavorite={isFavorite}
           onPressLeft={backButtonHandler}
           onPressRight={toggleIsFavorite}
+          hideBackButton={hideBackButton}
         />
       </View>
 
@@ -83,7 +88,7 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
                 fontSize={FONTSIZE.size_10}
                 fontFamily={FONTFAMILY.poppins_regular}
                 style={styles.typeLabel}
-                />
+              />
             </View>
             <View style={styles.type}>
               <CustomIcon
@@ -97,7 +102,7 @@ const DetailsImageBackground: React.FC<DetailsImageBackgroundProps> = ({
                 fontSize={FONTSIZE.size_10}
                 fontFamily={FONTFAMILY.poppins_regular}
                 style={styles.typeLabel}
-                />
+              />
             </View>
           </View>
         </View>
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
   imageBackgroundContent: {
     flex: 1,
     marginHorizontal: 30,
+    
   },
   detailsContainer: {
     height: 148,

@@ -74,6 +74,7 @@ const DetailsScreen = () => {
           isFavorite={isFavorite}
           backButtonHandler={backButtonHandler}
           toggleIsFavorite={toggleIsFavorite}
+          hideBackButton={false}
         />
         <DetailsDescription
           description={item.description}
