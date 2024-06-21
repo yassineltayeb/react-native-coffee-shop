@@ -10,6 +10,8 @@ import DetailsImageBackground from "components/common/DetailsImageBackground";
 import DetailsDescription from "components/common/DetailsDescription";
 import DetailsSizes from "components/common/DetailsSizes";
 import PriceFooter from "components/common/PriceFooter";
+import { addToCart } from "store/cart-slice";
+import { Price } from "models/cart-item.model";
 
 type DetailsScreenRouteParams = {
   route: {
@@ -55,6 +57,21 @@ const DetailsScreen = () => {
     setSelectedPrice(selectedSizeFromPrizes[0].price);
   };
 
+  const addToCartHandler = (id: string, size: any) => {
+    const price = item.prices?.filter((price: any) => price.size === size);
+    const cartItemPrice: Price = {
+      size: price[0].size,
+      price: price[0].price,
+      currency: price[0].currency,
+    };
+    const cartItem = {
+      id: id,
+      price: cartItemPrice,
+    };
+
+    dispatch(addToCart(cartItem));
+  };
+
   useEffect(() => {
     getIsFavorite();
   }, []);
@@ -91,6 +108,9 @@ const DetailsScreen = () => {
           price={selectedPrice}
           priceButtonLabel="Add to Cart"
           containerStyle={styles.priceContainer}
+          onPress={() => {
+            addToCartHandler(item.id, selectedSize);
+          }}
         />
       </ScrollView>
     </SafeAreaView>

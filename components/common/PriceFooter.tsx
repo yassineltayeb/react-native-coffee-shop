@@ -9,6 +9,7 @@ interface PriceFooterProps {
   price: number;
   priceButtonLabel: string;
   containerStyle?: any;
+  onPress?: any;
 }
 
 const PriceFooter: React.FC<PriceFooterProps> = ({
@@ -16,11 +17,12 @@ const PriceFooter: React.FC<PriceFooterProps> = ({
   price,
   priceButtonLabel,
   containerStyle,
+  onPress,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={styles.priceContainer}>
-        <Title title="Price" color={COLORS.secondaryLightGreyHex} />
+        <Title title={priceTitle} color={COLORS.secondaryLightGreyHex} />
         <View style={styles.priceDetailsContainer}>
           <Text style={styles.priceIcon}>$</Text>
           <Text style={styles.price}>{price}</Text>
@@ -30,6 +32,7 @@ const PriceFooter: React.FC<PriceFooterProps> = ({
         text={priceButtonLabel}
         buttonStyle={styles.buttonStyle}
         textStyle={styles.buttonStyle}
+        onPress={onPress}
       />
     </View>
   );

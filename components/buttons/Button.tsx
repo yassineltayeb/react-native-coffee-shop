@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
           color={COLORS.primaryWhiteHex}
           fontFamily={FONTFAMILY.poppins_bold}
           fontSize={FONTSIZE.size_16}
-          style={styles.text}
+          style={[styles.text]}
         />
       </View>
     </Pressable>

@@ -18,7 +18,6 @@ const FavoriteScreen: React.FC<FavoriteScreenProps> = ({}) => {
   );
   const favoriteBeans = beans.filter((coffee) => favorites.includes(coffee.id));
   const combinedList = favoriteCoffees.concat(favoriteBeans);
-  console.log(combinedList);
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
