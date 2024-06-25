@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { Image } from "react-native";
 import CartScreen from "screens/CartScreen";
 import FavoriteScreen from "screens/FavoriteScreen";
 import HomeScreen from "screens/HomeScreen";
 import { COLORS } from "theme/these";
+import CustomIcon from "./CustomIcon";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,10 +30,7 @@ const TabNavigation: React.FC<abNavigationProps> = ({}) => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require("../../assets/images/navigation/home.png")}
-              style={{ width: size, height: size, tintColor: color }}
-            />
+            <CustomIcon name="home" color={color} size={size} />
           ),
         }}
       />
@@ -42,22 +39,17 @@ const TabNavigation: React.FC<abNavigationProps> = ({}) => {
         component={FavoriteScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require("../../assets/images/navigation/heart.png")}
-              style={{ width: size, height: size, tintColor: color }}
-            />
+            <CustomIcon name="like" color={color} size={size}/>
+
           ),
         }}
       />
-        <Tab.Screen
+      <Tab.Screen
         name="Cart"
         component={CartScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require("../../assets/images/navigation/heart.png")}
-              style={{ width: size, height: size, tintColor: color }}
-            />
+            <CustomIcon name="cart" color={color} size={size} />
           ),
         }}
       />
