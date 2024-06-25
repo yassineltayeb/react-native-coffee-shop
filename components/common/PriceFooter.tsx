@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     width: 240,
     height: 60,
+    borderRadius: 20,
   },
   textStyle: {},
 });

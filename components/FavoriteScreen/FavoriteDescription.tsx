@@ -17,6 +17,7 @@ const FavoriteDescription: React.FC<FavoriteDescriptionProps> = ({
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
+      style={styles.linearGradient}
     >
       <View style={[styles.container, style]}>
         <Title
@@ -26,21 +27,40 @@ const FavoriteDescription: React.FC<FavoriteDescriptionProps> = ({
           fontFamily={FONTFAMILY.poppins_medium}
           fontSize={FONTSIZE.size_16}
         />
-        <Title
-          title={description}
-          color={COLORS.secondaryLightGreyHex}
-          fontFamily={FONTFAMILY.poppins_regular}
-          fontSize={FONTSIZE.size_12}
-        />
+        <View style={styles.descriptionContainer}>
+          <Title
+            title={description}
+            color={COLORS.secondaryLightGreyHex}
+            fontFamily={FONTFAMILY.poppins_regular}
+            fontSize={FONTSIZE.size_12}
+            style={styles.description}
+          />
+        </View>
       </View>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  linearGradient: {
+    flex: 1,
+    width: "100%",
+    paddingHorizontal: 22,
+  },
+  container: {
+    justifyContent: "center",
+    alignContent: "center",
+  },
   title: {
     marginBottom: 15,
+  },
+  descriptionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  description: {
+    alignSelf: "center", // Ensuring the description is centered
   },
 });
 

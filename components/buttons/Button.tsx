@@ -8,6 +8,7 @@ interface ButtonProps {
   buttonStyle?: any;
   textStyle?: any;
   onPress?: any;
+  padding?:any;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
     backgroundColor: COLORS.primaryOrangeHex,
   },
   text: {

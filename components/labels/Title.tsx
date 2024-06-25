@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { FONTFAMILY, FONTSIZE } from "theme/these";
+import { COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 
 interface TitleProps {
   title: string;
-  color: string;
+  color?: string;
   fontFamily?: string;
   fontSize?: number;
   style?: any;
@@ -20,7 +20,7 @@ const Title: React.FC<TitleProps> = ({
   const textStyle = [
     styles.text,
     {
-      color: color,
+      color: color??COLORS.primaryLightGreyHex,
       fontFamily: fontFamily ?? FONTFAMILY.poppins_medium,
       fontSize: fontSize ?? FONTSIZE.size_14,
       lineHeight: (fontSize ?? FONTSIZE.size_14) * 1.4, // Dynamic lineHeight based on fontSize

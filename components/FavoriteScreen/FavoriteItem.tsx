@@ -1,19 +1,9 @@
-import {
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
-import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
-import { LinearGradient } from "expo-linear-gradient";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import DetailsImageBackground from "components/common/DetailsImageBackground";
 import { useDispatch } from "react-redux";
 import { toggleFavorite } from "store/favorite-slice";
-import DetailsDescription from "components/common/DetailsDescription";
 import FavoriteDescription from "./FavoriteDescription";
 
 interface FavoriteItemProps {
@@ -23,8 +13,6 @@ interface FavoriteItemProps {
 const FavoriteItem: React.FC<FavoriteItemProps> = ({ item }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  console.log("item", item);
 
   const handleCardClick = () => {
     navigation.navigate("DetailsScreen", { item: item });
@@ -75,7 +63,6 @@ const styles = StyleSheet.create({
   },
   description: {
     marginVertical: 19,
-    marginHorizontal: 18.5,
   },
 });
 

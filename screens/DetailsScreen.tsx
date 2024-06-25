@@ -57,7 +57,7 @@ const DetailsScreen = () => {
     setSelectedPrice(selectedSizeFromPrizes[0].price);
   };
 
-  const addToCartHandler = (id: string, size: any) => {
+  const addToCartHandler = (id: string, type: string, size: any) => {
     const price = item.prices?.filter((price: any) => price.size === size);
     const cartItemPrice: Price = {
       size: price[0].size,
@@ -66,6 +66,7 @@ const DetailsScreen = () => {
     };
     const cartItem = {
       id: id,
+      type: type,
       price: cartItemPrice,
     };
 
@@ -109,7 +110,7 @@ const DetailsScreen = () => {
           priceButtonLabel="Add to Cart"
           containerStyle={styles.priceContainer}
           onPress={() => {
-            addToCartHandler(item.id, selectedSize);
+            addToCartHandler(item.id, item.type, selectedSize);
           }}
         />
       </ScrollView>

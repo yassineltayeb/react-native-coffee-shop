@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Price {
+export interface Price {
   size: string;
   price: string;
   currency: string;
@@ -9,6 +9,7 @@ interface Price {
 
 interface CartItem {
   id: string;
+  type: string;
   prices: Price[];
 }
 
@@ -18,21 +19,32 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<{ id: string; price: { size: string; price: string; currency: string } }>) {
-      const { id, price } = action.payload;
+    addToCart(
+      state,
+      action: PayloadAction<{
+        id: string;
+        type: string;
+        price: { size: string; price: string; currency: string };
+      }>
+    ) {
+      const { id, type, price } = action.payload;
       const itemIndex = state.findIndex((item) => item.id === id);
 
       if (itemIndex === -1) {
         // Item is not in the cart, add it as a new item
         state.push({
           id,
+          type,
           prices: [{ ...price, count: 1 }],
         });
       } else {
         // Item is already in the cart, update the prices
         const existingItem = state[itemIndex];
         const priceIndex = existingItem.prices.findIndex(
-          (p) => p.size === price.size && p.price === price.price && p.currency === price.currency
+          (p) =>
+            p.size === price.size &&
+            p.price === price.price &&
+            p.currency === price.currency
         );
 
         if (priceIndex === -1) {

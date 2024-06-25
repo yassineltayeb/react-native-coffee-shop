@@ -21,9 +21,8 @@ const FavoriteScreen: React.FC<FavoriteScreenProps> = ({}) => {
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <ScrollView
-        style={styles.scrollViewContainer}
-        contentContainerStyle={styles.contentContainerStyle}
+      <View
+        style={styles.container}
       >
         <Header title="Favorites" />
         {combinedList.length == 0 ? (
@@ -38,7 +37,7 @@ const FavoriteScreen: React.FC<FavoriteScreenProps> = ({}) => {
         ) : (
           <FavoritesList items={combinedList} />
         )}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -48,12 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.primaryBlackHex,
   },
-  scrollViewContainer: {
+  container: {
     flex: 1,
     marginHorizontal: 20,
-  },
-  contentContainerStyle: {
-    flex: 1,
     justifyContent: "center",
   },
   emptyTitle: {

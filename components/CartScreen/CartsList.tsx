@@ -1,13 +1,13 @@
 import { FlatList, StyleSheet } from "react-native";
 import React from "react";
-import FavoriteItem from "./FavoriteItem";
+import CartItem from "./CartItem";
 
-interface FavoritesListProps {
+interface CartsListProps {
   items: any[];
   style?: any;
 }
 
-const FavoritesList: React.FC<FavoritesListProps> = ({
+const CartsList: React.FC<CartsListProps> = ({
   items: coffees,
   style,
 }) => {
@@ -15,7 +15,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({
     <FlatList
       showsHorizontalScrollIndicator={false}
       data={coffees}
-      renderItem={({ item }) => <FavoriteItem item={item} />}
+      renderItem={({ item }) => <CartItem item={item} />}
       keyExtractor={(item, index) => item.id}
       style={styles.container}
     />
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavoritesList;
+export default CartsList;
