@@ -15,7 +15,9 @@ const CartItemQuantities: React.FC<CartItemQuantitiesProps> = ({ prices }) => {
       {prices.map((price: Price) => {
         return (
           <View style={styles.priceDetails}>
-            <Text style={styles.size}>{price.size}</Text>
+            <View style={styles.sizeContainer}>
+              <Text style={styles.size}>{price.size}</Text>
+            </View>
             <View style={styles.priceDetailsContainer}>
               <Text style={styles.priceIcon}>$</Text>
               <Text style={styles.price}>{price.price}</Text>
@@ -44,14 +46,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 4,
   },
+  sizeContainer: {
+    height: 35,
+    width: 75,
+  },
   size: {
-    flexDirection: "row",
     color: COLORS.primaryWhiteHex,
-    paddingHorizontal: 31,
     paddingVertical: 7,
     backgroundColor: COLORS.primaryBlackHex,
     overflow: "hidden",
     borderRadius: 10,
+    fontSize: FONTSIZE.size_16,
+    justifyContent: "center",
+    alignContent: "center",
+    textAlign: "center",
   },
   priceDetailsContainer: {
     flexDirection: "row",
