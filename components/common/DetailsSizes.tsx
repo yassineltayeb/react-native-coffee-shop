@@ -29,9 +29,8 @@ const DetailsSizes: React.FC<DetailsSizesProps> = ({
         {prices &&
           prices.map((price: any) => {
             return (
-              <Pressable onPress={() => onPress(price.size)}>
+              <Pressable key={price.size} onPress={() => onPress(price.size)}>
                 <View
-                  key={price.size}
                   style={[
                     styles.size,
                     price.size == selectedSize && styles.sizeActive,
