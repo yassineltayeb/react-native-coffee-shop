@@ -42,7 +42,11 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
               fontSize={FONTSIZE.size_16}
             />
             <Title
-              title={cartItem.name}
+              title={
+                cartItem.type == "Coffee"
+                  ? cartItem.roasted
+                  : cartItem.special_ingredient
+              }
               color={COLORS.secondaryLightGreyHex}
               fontFamily={FONTFAMILY.poppins_light}
               fontSize={FONTSIZE.size_10}
