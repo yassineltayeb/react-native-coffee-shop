@@ -1,14 +1,10 @@
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "components/common/Card";
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 import Title from "components/labels/Title";
 import { RootState } from "store/store";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import ButtonIcon from "components/buttons/ButtonIcon";
-import Button from "components/buttons/Button";
 import CartItemQuantities from "./CartItemQuantities";
 
 interface CartItemProps {
@@ -18,7 +14,6 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const coffees = useSelector((state: RootState) => state.coffee);
   const beans = useSelector((state: RootState) => state.bean);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   let cartItem: any;
@@ -64,7 +59,11 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             </View>
           </View>
         </View>
-        <CartItemQuantities prices={item.prices}/>
+        <CartItemQuantities
+          id={cartItem.id}
+          type={cartItem.type}
+          prices={item.prices}
+        />
       </Card>
     </View>
   );

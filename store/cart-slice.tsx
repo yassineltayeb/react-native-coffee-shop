@@ -56,8 +56,44 @@ export const cartSlice = createSlice({
         }
       }
     },
+    removeFromCart(
+      state,
+      action: PayloadAction<{
+        id: string;
+        type: string;
+        price: { size: string; price: string; currency: string };
+      }>
+    ) {
+      const { id, type, price } = action.payload;
+      const itemIndex = state.findIndex((item) => item.id === id);
+
+      if (itemIndex !== -1) {
+        const existingItem = state[itemIndex];
+        const priceIndex = existingItem.prices.findIndex(
+          (p) =>
+            p.size === price.size &&
+            p.price === price.price &&
+            p.currency === price.currency
+        );
+
+        if (priceIndex !== -1) {
+          // Price is in the cart, decrease the count
+          if (existingItem.prices[priceIndex].count > 1) {
+            existingItem.prices[priceIndex].count -= 1;
+          } else {
+            // Remove the price if count is 1
+            existingItem.prices.splice(priceIndex, 1);
+          }
+
+          // Remove the item if no prices are left
+          if (existingItem.prices.length === 0) {
+            state.splice(itemIndex, 1);
+          }
+        }
+      }
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

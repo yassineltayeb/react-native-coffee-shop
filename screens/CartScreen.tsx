@@ -11,8 +11,6 @@ import CartsList from "components/CartScreen/CartsList";
 const CartScreen = () => {
   const cart = useSelector((state: RootState) => state.cart);
 
-  cart.forEach((item) => console.log(item));
-
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.container}>

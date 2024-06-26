@@ -25,7 +25,7 @@ const PriceFooter: React.FC<PriceFooterProps> = ({
         <Title title={priceTitle} color={COLORS.secondaryLightGreyHex} />
         <View style={styles.priceDetailsContainer}>
           <Text style={styles.priceIcon}>$</Text>
-          <Text style={styles.price}>{price}</Text>
+          <Text style={styles.price}>{price.toFixed(2)}</Text>
         </View>
       </View>
       <Button
@@ -40,7 +40,6 @@ const PriceFooter: React.FC<PriceFooterProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

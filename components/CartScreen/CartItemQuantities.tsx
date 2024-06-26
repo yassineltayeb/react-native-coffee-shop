@@ -1,15 +1,51 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Price } from "store/cart-slice";
+import { Price, addToCart, removeFromCart } from "store/cart-slice";
 import Title from "components/labels/Title";
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE } from "theme/these";
 import Button from "components/buttons/Button";
+import { useDispatch } from "react-redux";
 
 interface CartItemQuantitiesProps {
+  id: string;
+  type: string;
   prices: Price[];
 }
 
-const CartItemQuantities: React.FC<CartItemQuantitiesProps> = ({ prices }) => {
+const CartItemQuantities: React.FC<CartItemQuantitiesProps> = ({
+  id,
+  type,
+  prices,
+}) => {
+  const dispatch = useDispatch();
+
+  const addHandler = (size: string, price: string, currency: string) => {
+    const cartItemToAdd = {
+      id: id,
+      type: type,
+      price: {
+        size: size,
+        price: price,
+        currency: currency,
+      },
+    };
+
+    dispatch(addToCart(cartItemToAdd));
+  };
+  const removeHandler = (size: string, price: string, currency: string) => {
+    const cartItemToRemove = {
+      id: id,
+      type: type,
+      price: {
+        size: size,
+        price: price,
+        currency: currency,
+      },
+    };
+
+    dispatch(removeFromCart(cartItemToRemove));
+  };
+
   return (
     <View style={styles.container}>
       {prices.map((price: Price) => {
@@ -22,11 +58,23 @@ const CartItemQuantities: React.FC<CartItemQuantitiesProps> = ({ prices }) => {
               <Text style={styles.priceIcon}>$</Text>
               <Text style={styles.price}>{price.price}</Text>
             </View>
-            <Button text="-" buttonStyle={styles.buttonStyle} />
+            <Button
+              text="-"
+              buttonStyle={styles.buttonStyle}
+              onPress={() =>
+                removeHandler(price.size, price.price, price.currency)
+              }
+            />
             <View style={styles.countContainer}>
               <Text style={styles.count}>{price.count}</Text>
             </View>
-            <Button text="+" buttonStyle={styles.buttonStyle} />
+            <Button
+              text="+"
+              buttonStyle={styles.buttonStyle}
+              onPress={() =>
+                addHandler(price.size, price.price, price.currency)
+              }
+            />
           </View>
         );
       })}
