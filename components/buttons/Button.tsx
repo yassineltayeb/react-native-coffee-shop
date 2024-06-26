@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLORS, FONTFAMILY, FONTSIZE, SPACING } from "theme/these";
 import Title from "components/labels/Title";
 
@@ -8,7 +8,7 @@ interface ButtonProps {
   buttonStyle?: any;
   textStyle?: any;
   onPress?: any;
-  padding?:any;
+  padding?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,8 +17,15 @@ const Button: React.FC<ButtonProps> = ({
   textStyle,
   onPress,
 }) => {
+  const [opacity, setOpacity] = useState(1);
+
   return (
-    <Pressable onPress={onPress}>
+    <Pressable
+      onPress={onPress}
+      onPressIn={() => setOpacity(0.5)}
+      onPressOut={() => setOpacity(1)}
+      style={{ opacity }}
+    >
       <View style={[styles.container, buttonStyle]}>
         <Title
           title={text}
