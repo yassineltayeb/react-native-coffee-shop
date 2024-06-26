@@ -6,7 +6,7 @@ import Button from "components/buttons/Button";
 
 interface PriceFooterProps {
   priceTitle: string;
-  price: number;
+  price: string;
   priceButtonLabel: string;
   containerStyle?: any;
   onPress?: any;
@@ -25,7 +25,7 @@ const PriceFooter: React.FC<PriceFooterProps> = ({
         <Title title={priceTitle} color={COLORS.secondaryLightGreyHex} />
         <View style={styles.priceDetailsContainer}>
           <Text style={styles.priceIcon}>$</Text>
-          <Text style={styles.price}>{price.toFixed(2)}</Text>
+          <Text style={styles.price}>{price}</Text>
         </View>
       </View>
       <Button

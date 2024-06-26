@@ -17,7 +17,7 @@ const CartsList: React.FC<CartsListProps> = ({ items, style }) => {
         totalPrice += price.count * parseFloat(price.price);
       });
     });
-    return totalPrice; // Ensure the total price is formatted to two decimal places
+    return totalPrice.toFixed(2);
   };
   return (
     <View style={styles.mainContainer}>
