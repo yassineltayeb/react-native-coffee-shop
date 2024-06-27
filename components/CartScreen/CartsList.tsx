@@ -3,6 +3,7 @@ import React from "react";
 import CartItem from "./CartItem";
 import PriceFooter from "components/common/PriceFooter";
 import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 interface CartsListProps {
   items: any[];
@@ -10,6 +11,8 @@ interface CartsListProps {
 }
 
 const CartsList: React.FC<CartsListProps> = ({ items, style }) => {
+  const navigation = useNavigation();
+
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     items.forEach((item) => {
@@ -19,6 +22,11 @@ const CartsList: React.FC<CartsListProps> = ({ items, style }) => {
     });
     return totalPrice.toFixed(2);
   };
+
+  const payButtonHandler = () => {
+    navigation.navigate("PaymentScreen", { totalPrice: calculateTotalPrice() });
+  };
+
   return (
     <View style={styles.mainContainer}>
       <FlatList
@@ -32,6 +40,7 @@ const CartsList: React.FC<CartsListProps> = ({ items, style }) => {
         priceTitle="Total Price"
         price={calculateTotalPrice()}
         priceButtonLabel="Pay"
+        onPress={payButtonHandler}
       />
     </View>
   );

@@ -9,6 +9,8 @@ interface DetailsScreenHeaderProps {
   onPressLeft?: any;
   onPressRight?: any;
   hideBackButton: boolean;
+  hideFavoriteButton?: boolean;
+  title?: string;
 }
 
 const DetailsScreenHeader: React.FC<DetailsScreenHeaderProps> = ({
@@ -16,6 +18,8 @@ const DetailsScreenHeader: React.FC<DetailsScreenHeaderProps> = ({
   onPressLeft,
   onPressRight,
   hideBackButton,
+  hideFavoriteButton,
+  title
 }) => {
   return (
     <View style={styles.container}>
@@ -29,12 +33,19 @@ const DetailsScreenHeader: React.FC<DetailsScreenHeaderProps> = ({
           />
         )}
       </View>
-      <ButtonIcon
-        name="heart"
-        color={isFavorite ? COLORS.primaryRedHex : COLORS.secondaryLightGreyHex}
-        size={FONTSIZE.size_16}
-        onPress={onPressRight}
-      />
+      <Text style={styles.headerText}>{title}</Text>
+      <View>
+        {!hideFavoriteButton && (
+          <ButtonIcon
+            name="heart"
+            color={
+              isFavorite ? COLORS.primaryRedHex : COLORS.secondaryLightGreyHex
+            }
+            size={FONTSIZE.size_16}
+            onPress={onPressRight}
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -51,6 +62,7 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_20,
     color: COLORS.primaryWhiteHex,
   },
+  
 });
 
 export default DetailsScreenHeader;
