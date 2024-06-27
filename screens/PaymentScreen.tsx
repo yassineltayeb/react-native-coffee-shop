@@ -184,5 +184,7 @@ const styles = StyleSheet.create({
   paymentMethods: {
     flex: 1,
   },
-  footer: {},
+  footer: {
+    marginHorizontal: 18.5,
+  },
 });
