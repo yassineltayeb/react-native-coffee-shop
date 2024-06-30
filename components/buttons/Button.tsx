@@ -41,7 +41,6 @@ const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.primaryOrangeHex,

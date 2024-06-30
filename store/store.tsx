@@ -3,13 +3,15 @@ import coffeeSlice from "./coffee-slice";
 import beansSlice from "./beans-slice";
 import favoriteSlice from "./favorite-slice";
 import cartSlice from "./cart-slice";
+import orderHistorySlice from "./order-history-slice";
 
 export const store = configureStore({
   reducer: {
     bean: beansSlice,
-    cart:cartSlice,
+    cart: cartSlice,
     coffee: coffeeSlice,
     favorite: favoriteSlice,
+    history: orderHistorySlice,
   },
 });
 

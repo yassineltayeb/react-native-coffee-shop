@@ -50,7 +50,7 @@ const CartItemQuantities: React.FC<CartItemQuantitiesProps> = ({
     <View style={styles.container}>
       {prices.map((price: Price) => {
         return (
-          <View style={styles.priceDetails}>
+          <View key={price.size} style={styles.priceDetails}>
             <View style={styles.sizeContainer}>
               <Text style={styles.size}>{price.size}</Text>
             </View>

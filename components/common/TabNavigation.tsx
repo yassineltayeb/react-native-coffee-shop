@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image } from "react-native";
 import CartScreen from "screens/CartScreen";
 import FavoriteScreen from "screens/FavoriteScreen";
 import HomeScreen from "screens/HomeScreen";
 import { COLORS } from "theme/these";
 import CustomIcon from "./CustomIcon";
+import HistoryScreen from "screens/HistoryScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,8 +39,7 @@ const TabNavigation: React.FC<abNavigationProps> = ({}) => {
         component={FavoriteScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <CustomIcon name="like" color={color} size={size}/>
-
+            <CustomIcon name="like" color={color} size={size} />
           ),
         }}
       />
@@ -50,6 +49,15 @@ const TabNavigation: React.FC<abNavigationProps> = ({}) => {
         options={{
           tabBarIcon: ({ color, size }) => (
             <CustomIcon name="cart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <CustomIcon name="bell" color={color} size={size} />
           ),
         }}
       />

@@ -7,7 +7,7 @@ export interface Price {
   count: number;
 }
 
-interface CartItem {
+export interface CartItem {
   id: string;
   type: string;
   prices: Price[];
@@ -91,6 +91,9 @@ export const cartSlice = createSlice({
           }
         }
       }
+    },
+    clearCart(state) {
+      return initialState;
     },
   },
 });

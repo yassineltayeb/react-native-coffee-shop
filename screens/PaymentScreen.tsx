@@ -1,4 +1,4 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BORDERRADIUS, COLORS, FONTSIZE } from "theme/these";
@@ -11,6 +11,11 @@ import PaymentMethod from "components/PaymentCart/PaymentMethod";
 import PriceFooter from "components/common/PriceFooter";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "components/common/StackNavigation";
+import { OrderHistoryItemModel } from "models/order-history-item";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "store/store";
+import { addToHistory } from "store/order-history-slice";
+import moment from "moment";
 
 type PaymentScreenRouteProp = RouteProp<RootStackParamList, "PaymentScreen">;
 type PaymentScreenNavigationProp = StackNavigationProp<
@@ -23,15 +28,26 @@ type PaymentScreenProps = {
   navigation: PaymentScreenNavigationProp;
 };
 
-const height = Dimensions.get("window").height;
-
 const PaymentScreen: React.FC<PaymentScreenProps> = () => {
+  const cartItems = useSelector((state: RootState) => state.cart);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const route = useRoute<PaymentScreenRouteProp>();
   const { totalPrice } = route.params;
 
   const backButtonHandler = () => {
     navigation.goBack();
+  };
+
+  const handelPay = () => {
+    const orderItem: OrderHistoryItemModel = {
+      id: generateRandomId(4),
+      orderDate: moment(new Date()).format("Do MMMM HH:mm"),
+      totalAmount: totalPrice,
+      items: cartItems,
+    };
+
+    dispatch(addToHistory(orderItem));
   };
 
   return (
@@ -127,9 +143,21 @@ const PaymentScreen: React.FC<PaymentScreenProps> = () => {
         price={totalPrice}
         priceButtonLabel="Pay from Credit Card"
         containerStyle={styles.footer}
+        onPress={handelPay}
       />
     </SafeAreaView>
   );
+};
+
+const generateRandomId = (length: number): string => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 };
 
 export default PaymentScreen;

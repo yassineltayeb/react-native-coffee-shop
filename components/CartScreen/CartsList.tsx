@@ -2,7 +2,6 @@ import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
 import CartItem from "./CartItem";
 import PriceFooter from "components/common/PriceFooter";
-import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 interface CartsListProps {
